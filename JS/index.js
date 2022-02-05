@@ -4,6 +4,7 @@ const refreshGameBtn = document.querySelector('.refresh');
 let cross = true;
 const ticTacToeValues = new Array(9).fill('empty');
 let actualBoxes = [];
+let winnerDecided = false;
 
 allBoxes.forEach((boxes) => {
   for (const eachBox of boxes.children) {
@@ -18,14 +19,14 @@ const fillInValues = () => {
 
 actualBoxes.forEach((box, index) => {
   box.addEventListener('click', function (event) {
-    if (event.target.innerHTML === 'empty') {
+    if (event.target.innerHTML === 'empty' && !winnerDecided) {
       ticTacToeValues[index] = cross ? 'X' : 'O';
       fillInValues();
       cross = !cross;
       turnText.innerHTML = `${cross ? 'Cross' : 'Circle'}'s turn`;
     }
-    checkIsWinner();
     checkDraw();
+    checkIsWinner();
   });
 });
 
@@ -43,6 +44,7 @@ const checkIsWinner = () => {
   ) {
     turnText.innerHTML = `${ticTacToeValues[0]} won`;
     refreshGameBtn.removeAttribute('disabled');
+    winnerDecided = true;
   } else if (
     ticTacToeValues[3] !== 'empty' &&
     ticTacToeValues[3] === ticTacToeValues[4] &&
@@ -50,6 +52,7 @@ const checkIsWinner = () => {
   ) {
     turnText.innerHTML = `${ticTacToeValues[3]} won`;
     refreshGameBtn.removeAttribute('disabled');
+    winnerDecided = true;
   } else if (
     ticTacToeValues[6] !== 'empty' &&
     ticTacToeValues[6] === ticTacToeValues[7] &&
@@ -64,6 +67,7 @@ const checkIsWinner = () => {
   ) {
     turnText.innerHTML = `${ticTacToeValues[0]} won`;
     refreshGameBtn.removeAttribute('disabled');
+    winnerDecided = true;
   } else if (
     ticTacToeValues[1] !== 'empty' &&
     ticTacToeValues[1] === ticTacToeValues[4] &&
@@ -71,6 +75,7 @@ const checkIsWinner = () => {
   ) {
     turnText.innerHTML = `${ticTacToeValues[1]} won`;
     refreshGameBtn.removeAttribute('disabled');
+    winnerDecided = true;
   } else if (
     ticTacToeValues[2] !== 'empty' &&
     ticTacToeValues[2] === ticTacToeValues[5] &&
@@ -78,6 +83,7 @@ const checkIsWinner = () => {
   ) {
     turnText.innerHTML = `${ticTacToeValues[2]} won`;
     refreshGameBtn.removeAttribute('disabled');
+    winnerDecided = true;
   } else if (
     ticTacToeValues[0] !== 'empty' &&
     ticTacToeValues[0] === ticTacToeValues[4] &&
@@ -85,6 +91,7 @@ const checkIsWinner = () => {
   ) {
     turnText.innerHTML = `${ticTacToeValues[0]} won`;
     refreshGameBtn.removeAttribute('disabled');
+    winnerDecided = true;
   } else if (
     ticTacToeValues[2] !== 'empty' &&
     ticTacToeValues[2] === ticTacToeValues[4] &&
@@ -92,6 +99,7 @@ const checkIsWinner = () => {
   ) {
     turnText.innerHTML = `${ticTacToeValues[2]} won`;
     refreshGameBtn.removeAttribute('disabled');
+    winnerDecided = true;
   }
 };
 
